@@ -42,20 +42,33 @@ function showCurrentData() {
     select1.append(option4);
     main.append(select1);
 
+    let gohome = document.createElement("button");
+    gohome.innerText = "Go Back";
+    main.append(gohome);
+    gohome.addEventListener("click", () => {
+        main.append(select);
+        select.value = "";
+        select1.remove();
+        gohome.remove();
+    })
+
     select1.addEventListener("change", () => {
         if(select1.value === "LL")
         {
             select1.remove();
+            gohome.remove();
             showCurrentDataLL();
         }
         else if(select1.value === "city")
         {
             select1.remove();
+            gohome.remove();
             showCurrentDataCity();
         }
         else if(select1.value === "IP")
         {
             select1.remove();
+            gohome.remove();
             showCurrentDataIP();
         }
     })
@@ -77,8 +90,21 @@ function showCurrentData() {
         button.className = "currll";
         button.innerText = "Find the weather";
         div.append(button);
+
+        let gocw = document.createElement("button");
+        gocw.innerText = "Go Back";
+        div.append(gocw);
+
+        gocw.addEventListener("click", () => {
+            main.append(select1);
+            select1.value = "";
+            main.append(gohome);
+            div.remove();
+        })
+
         main.append(div);
         button.addEventListener("click", async () => {
+            gocw.remove();
             if(input1.value === "" || input2.value === "")
             {
                 alert("Enter something");
@@ -199,6 +225,23 @@ function showCurrentData() {
                     }
                     div1.append(label);
                 })
+
+                let gocwll = document.createElement("button");
+                gocwll.innerText = "Go Back";
+                div.append(gocwll);
+
+                gocwll.addEventListener("click", () => {
+                    h2.remove();
+                    div1.remove();
+                    gocwll.remove();
+                    div.append(input1);
+                    div.append(input2);
+                    input1.value = "";
+                    input2.value = "";
+                    div.append(button);
+                    div.append(gocw);
+                })
+
             })
         })
     }
@@ -215,8 +258,21 @@ function showCurrentData() {
         button.className = "currll";
         button.innerText = "Find the weather";
         div.append(button);
+
+        let gocw = document.createElement("button");
+        gocw.innerText = "Go Back";
+        div.append(gocw);
+
+        gocw.addEventListener("click", () => {
+            main.append(select1);
+            select1.value = "";
+            main.append(gohome);
+            div.remove();
+        })
+
         main.append(div);
         button.addEventListener("click", async () => {
+            gocw.remove();
             if(input.value === "")
             {
                 alert("Enter something");
@@ -338,6 +394,20 @@ function showCurrentData() {
                     }
                     div1.append(label);
                 })
+
+                let gocwcity = document.createElement("button");
+                gocwcity.innerText = "Go Back";
+                div.append(gocwcity);
+
+                gocwcity.addEventListener("click", () => {
+                    h2.remove();
+                    div1.remove();
+                    gocwcity.remove();
+                    div.append(input);
+                    input.value = "";
+                    div.append(button);
+                    div.append(gocw);
+                })
             })
         })
     }
@@ -354,8 +424,21 @@ function showCurrentData() {
         button.className = "currll";
         button.innerText = "Find the weather";
         div.append(button);
+
+        let gocw = document.createElement("button");
+        gocw.innerText = "Go Back";
+        div.append(gocw);
+
+        gocw.addEventListener("click", () => {
+            main.append(select1);
+            select1.value = "";
+            main.append(gohome);
+            div.remove();
+        })
+
         main.append(div);
         button.addEventListener("click", async () => {
+            gocw.remove();
             if(input.value === "")
             {
                 alert("Enter something");
@@ -404,7 +487,7 @@ function showCurrentData() {
                 img1.src = "";
                 div2.append(img1);
                 div2.append(templabel);
-
+                
                 let humlabel = document.createElement("label");
                 humlabel.innerHTML = `Humidity in %: ${currweather["humidity"]}`;
                 let div3 = document.createElement("div");
@@ -494,6 +577,20 @@ function showCurrentData() {
                         }
                     }
                     div1.append(label);
+                })
+
+                let gocwip = document.createElement("button");
+                gocwip.innerText = "Go Back";
+                div.append(gocwip);
+
+                gocwip.addEventListener("click", () => {
+                    h2.remove();
+                    div1.remove();
+                    gocwip.remove();
+                    div.append(input);
+                    input.value = "";
+                    div.append(button);
+                    div.append(gocw);
                 })
             })
         })
