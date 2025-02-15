@@ -1532,7 +1532,7 @@ function showFutureData() {
                 return;
             }
                 let response = await fetch(
-                    `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value}&dt=${input3.value}`
+                    `${API_URL}future.json?key=${API_KEY}&q=${input1.value}&dt=${input3.value}`
                 )
                 let data = response.json();
                 data.then((res) => {
@@ -1549,21 +1549,16 @@ function showFutureData() {
                     div.append(h2);
 
                     let foreweatherarray = foreweather['forecastday'];
-
-                    let array2 = ["Good", "Moderate", "Unhealthy for sensitive group", "Unhealthy", "Very Unhealthy", "Hazardous"];
                     
-                    for(let i=0;i<foreweatherarray.length;i++)
-                    {
-                        let fore = foreweatherarray[i];
+                    let fore = foreweatherarray[0];
                         let h3 = document.createElement("h3");
                         h3.innerText = `${fore['date']}`;
                         div1.append(h3);
                         let forecastday = fore["day"];
-                        let airQuality = forecastday["air_quality"];
                         const table = document.createElement('table');
                         const thead = table.createTHead();
                         const headerRow = thead.insertRow();
-                        const headers = ['Air Quality','Avg Humidity', 'Avg Temperature in \u00B0C', 'Condition', 'Max Temperature in \u00B0C', 'Min Temperature in \u00B0C', 'Max Wind Speed in mph', 'Total Precipitation in mm'];
+                        const headers = ['Avg Humidity', 'Avg Temperature in \u00B0C', 'Condition', 'Max Temperature in \u00B0C', 'Min Temperature in \u00B0C', 'Max Wind Speed in mph', 'Total Precipitation in mm'];
                         headers.forEach(text => {
                             const th = document.createElement('th');
                             th.textContent = text;
@@ -1571,7 +1566,7 @@ function showFutureData() {
                         });
                         const tbody = table.createTBody();
                         const data = [
-                            [`${array2[airQuality['us-epa-index'] - 1]}`, `${forecastday['avghumidity']}`, `${forecastday['avgtemp_c']}`, `${forecastday['condition']['text']}`, `${forecastday['maxtemp_c']}`, `${forecastday['mintemp_c']}`, `${forecastday['maxwind_mph']}`, `${forecastday['totalprecip_mm']}`],
+                            [`${forecastday['avghumidity']}`, `${forecastday['avgtemp_c']}`, `${forecastday['condition']['text']}`, `${forecastday['maxtemp_c']}`, `${forecastday['mintemp_c']}`, `${forecastday['maxwind_mph']}`, `${forecastday['totalprecip_mm']}`],
                         ];
                         data.forEach(rowData => {
                             const row = tbody.insertRow();
@@ -1590,7 +1585,7 @@ function showFutureData() {
                         const table2 = document.createElement('table');
                         const thead2 = table2.createTHead();
                         const headerRow2 = thead2.insertRow();
-                        const headers2 = ['Time', 'Air Quality','Cloud', 'Temperature in \u00B0C', 'Condition', 'Humidity', 'Wind Speed in mph', 'Precipitation in mm'];
+                        const headers2 = ['Time', 'Cloud', 'Temperature in \u00B0C', 'Condition', 'Humidity', 'Wind Speed in mph', 'Precipitation in mm'];
                         headers2.forEach(text => {
                             const th = document.createElement('th');
                             th.textContent = text;
@@ -1601,9 +1596,7 @@ function showFutureData() {
                         for(let i=0;i<24;i++)
                         {
                             let fore1 = forecasthour[i];
-                            let airQualityhour = fore1["air_quality"];
                             data2[i] = [`${fore1["time"].slice(11)}`, 
-                            `${array2[airQualityhour["us-epa-index"] - 1]}`,
                             `${fore1["cloud"]}`,
                             `${fore1["temp_c"]}`,
                             `${fore1["condition"]["text"]}`,
@@ -1620,7 +1613,6 @@ function showFutureData() {
                             });
                         });
                         div1.append(table2);
-                    }
 
                     div.append(div1);
 
@@ -1633,6 +1625,7 @@ function showFutureData() {
                         div1.remove();
                         gofoip.remove();
                         div.append(input1);
+                        div.append(label);
                         div.append(input3);
                         input1.value = "";
                         input3.value = "";
