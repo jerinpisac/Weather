@@ -953,4 +953,171 @@ function showForecastData() {
                 })
         })
     }
+
+    function showForecastDataIP() {
+        let div = document.createElement("div");
+        div.className = "currlldiv";
+        let input1 = document.createElement("input");
+        input1.type = "text";
+        input1.placeholder = "Enter the IP Address...";
+        input1.className = "currlat";
+        div.append(input1);
+        let input3 = document.createElement("input");
+        input3.type = "number";
+        input3.placeholder = "Enter the no. of days ranging from 1 to 10";
+        input3.className = "nod";
+        div.append(input3);
+        let button = document.createElement("button");
+        button.className = "currll";
+        button.innerText = "Find the weather";
+        div.append(button);
+
+        let gocw = document.createElement("button");
+        gocw.innerText = "Go Back";
+        div.append(gocw);
+
+        gocw.addEventListener("click", () => {
+            main.append(select1);
+            select1.value = "";
+            main.append(gohome);
+            div.remove();
+        })
+
+        main.append(div);
+        button.addEventListener("click", async () => {
+            gocw.remove();
+            if(input1.value === "" || input3.value === "")                {
+                alert("Enter something");
+                return;
+            }
+            let ipString = input1.value;
+            let count1 = 0, count2 = 0;
+            for(let i=0;i<ipString.length;i++)
+            {
+                if(ipString[i] === '.') count1++;
+                else if(ipString[i] === ':') count2++;
+            }
+            if(count1 !== 3 && count2 === 0)
+            {
+                alert("Enter the correct IPv4 address");
+                return;
+            }
+            else if(count1 === 0 && count2 !== 7){
+                alert("Enter the correct IPv6 address");
+                return;
+            }
+            else if((count1 > 0 && count2 > 0)){
+                alert("Is it an IP address?");
+                return;
+            }
+                let response = await fetch(
+                    `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value}&days=${input3.value}&aqi=yes&alerts=no`
+                )
+                let data = response.json();
+                data.then((res) => {
+                    let foreweather = res['forecast'];
+                    let currlocation = res['location'];
+                    input1.remove();
+                    input3.remove();
+                    button.remove();
+                    let div1 = document.createElement("div");
+                    div1.className = "currlldiv1";
+                    let h2 = document.createElement("h2");
+                    h2.innerText = `${currlocation['name']}, ${currlocation['country']}`;
+                    div.append(h2);
+
+                    let foreweatherarray = foreweather['forecastday'];
+
+                    let array2 = ["Good", "Moderate", "Unhealthy for sensitive group", "Unhealthy", "Very Unhealthy", "Hazardous"];
+                    
+                    for(let i=0;i<foreweatherarray.length;i++)
+                    {
+                        let fore = foreweatherarray[i];
+                        let h3 = document.createElement("h3");
+                        h3.innerText = `${fore['date']}`;
+                        div1.append(h3);
+                        let forecastday = fore["day"];
+                        let airQuality = forecastday["air_quality"];
+                        const table = document.createElement('table');
+                        const thead = table.createTHead();
+                        const headerRow = thead.insertRow();
+                        const headers = ['Air Quality','Avg Humidity', 'Avg Temperature in \u00B0C', 'Condition', 'Max Temperature in \u00B0C', 'Min Temperature in \u00B0C', 'Max Wind Speed in mph', 'Total Precipitation in mm'];
+                        headers.forEach(text => {
+                            const th = document.createElement('th');
+                            th.textContent = text;
+                            headerRow.appendChild(th);
+                        });
+                        const tbody = table.createTBody();
+                        const data = [
+                            [`${array2[airQuality['us-epa-index'] - 1]}`, `${forecastday['avghumidity']}`, `${forecastday['avgtemp_c']}`, `${forecastday['condition']['text']}`, `${forecastday['maxtemp_c']}`, `${forecastday['mintemp_c']}`, `${forecastday['maxwind_mph']}`, `${forecastday['totalprecip_mm']}`],
+                        ];
+                        data.forEach(rowData => {
+                            const row = tbody.insertRow();
+                            rowData.forEach(cellData => {
+                                const cell = row.insertCell();
+                                cell.textContent = cellData;
+                            });
+                        });
+                        div1.append(table);
+
+                        let h4 = document.createElement("h4");
+                        h4.innerText = "On Hourly Basis";
+                        div1.append(h4);
+
+                        let forecasthour = fore["hour"];
+                        const table2 = document.createElement('table');
+                        const thead2 = table2.createTHead();
+                        const headerRow2 = thead2.insertRow();
+                        const headers2 = ['Time', 'Air Quality','Cloud', 'Temperature in \u00B0C', 'Condition', 'Humidity', 'Wind Speed in mph', 'Precipitation in mm'];
+                        headers2.forEach(text => {
+                            const th = document.createElement('th');
+                            th.textContent = text;
+                            headerRow2.appendChild(th);
+                        });
+                        const tbody2 = table2.createTBody();
+                        const data2 = [];
+                        for(let i=0;i<24;i++)
+                        {
+                            let fore1 = forecasthour[i];
+                            let airQualityhour = fore1["air_quality"];
+                            data2[i] = [`${fore1["time"].slice(11)}`, 
+                            `${array2[airQualityhour["us-epa-index"] - 1]}`,
+                            `${fore1["cloud"]}`,
+                            `${fore1["temp_c"]}`,
+                            `${fore1["condition"]["text"]}`,
+                            `${fore1["humidity"]}`,
+                            `${fore1["wind_mph"]}`,
+                            `${fore1["precip_mm"]}`]
+                        }
+                        console.log(data2);
+                        data2.forEach(rowData2 => {
+                            const row2 = tbody2.insertRow();
+                            rowData2.forEach(cellData2 => {
+                                const cell2 = row2.insertCell();
+                                cell2.textContent = cellData2;
+                            });
+                        });
+                        div1.append(table2);
+                    }
+
+                    div.append(div1);
+
+                    let gofoip = document.createElement("button");
+                    gofoip.innerText = "Go Back";
+                    div.append(gofoip);
+
+                    gofoip.addEventListener("click", () => {
+                        h2.remove();
+                        div1.remove();
+                        gofoip.remove();
+                        div.append(input1);
+                        div.append(input3);
+                        input1.value = "";
+                        input3.value = "";
+                        div.append(button);
+                        div.append(gocw);
+                    })
+                })
+        })
+    }
 }
