@@ -1326,7 +1326,7 @@ function showFutureData() {
         })
     }
 
-    function showForecastDataCity(){
+    function showFutureDataCity(){
         let div = document.createElement("div");
         div.className = "currlldiv";
         let input = document.createElement("input");
@@ -1335,8 +1335,11 @@ function showFutureData() {
         input.className = "currlat";
         div.append(input);
         let input3 = document.createElement("input");
-        input3.type = "number";
-        input3.placeholder = "Enter the no. of days ranging from 1 to 10";
+        input3.type = "text";
+        let label = document.createElement("label");
+        label.innerText = "Enter the date in yyyy-mm-dd format between 14 days and 300 days from today";
+        label.className = "datelabel";
+        div.append(label);
         input3.className = "nod";
         div.append(input3);
         let button = document.createElement("button");
@@ -1365,13 +1368,14 @@ function showFutureData() {
                     return;
                 }
                 let response = await fetch(
-                    `${API_URL}forecast.json?key=${API_KEY}&q=${input.value}&days=${input3.value}&aqi=yes&alerts=no`
+                    `${API_URL}future.json?key=${API_KEY}&q=${input.value}&dt=${input3.value}`
                 )
                 let data = response.json();
                 data.then((res) => {
                     let foreweather = res['forecast'];
                     let currlocation = res['location'];
                     input.remove();
+                    label.remove();
                     input3.remove();
                     button.remove();
                     let div1 = document.createElement("div");
@@ -1382,20 +1386,15 @@ function showFutureData() {
 
                     let foreweatherarray = foreweather['forecastday'];
 
-                    let array2 = ["Good", "Moderate", "Unhealthy for sensitive group", "Unhealthy", "Very Unhealthy", "Hazardous"];
-                    
-                    for(let i=0;i<foreweatherarray.length;i++)
-                    {
-                        let fore = foreweatherarray[i];
+                    let fore = foreweatherarray[0];
                         let h3 = document.createElement("h3");
                         h3.innerText = `${fore['date']}`;
                         div1.append(h3);
                         let forecastday = fore["day"];
-                        let airQuality = forecastday["air_quality"];
                         const table = document.createElement('table');
                         const thead = table.createTHead();
                         const headerRow = thead.insertRow();
-                        const headers = ['Air Quality','Avg Humidity', 'Avg Temperature in \u00B0C', 'Condition', 'Max Temperature in \u00B0C', 'Min Temperature in \u00B0C', 'Max Wind Speed in mph', 'Total Precipitation in mm'];
+                        const headers = ['Avg Humidity', 'Avg Temperature in \u00B0C', 'Condition', 'Max Temperature in \u00B0C', 'Min Temperature in \u00B0C', 'Max Wind Speed in mph', 'Total Precipitation in mm'];
                         headers.forEach(text => {
                             const th = document.createElement('th');
                             th.textContent = text;
@@ -1403,7 +1402,7 @@ function showFutureData() {
                         });
                         const tbody = table.createTBody();
                         const data = [
-                            [`${array2[airQuality['us-epa-index'] - 1]}`, `${forecastday['avghumidity']}`, `${forecastday['avgtemp_c']}`, `${forecastday['condition']['text']}`, `${forecastday['maxtemp_c']}`, `${forecastday['mintemp_c']}`, `${forecastday['maxwind_mph']}`, `${forecastday['totalprecip_mm']}`],
+                            [`${forecastday['avghumidity']}`, `${forecastday['avgtemp_c']}`, `${forecastday['condition']['text']}`, `${forecastday['maxtemp_c']}`, `${forecastday['mintemp_c']}`, `${forecastday['maxwind_mph']}`, `${forecastday['totalprecip_mm']}`],
                         ];
                         data.forEach(rowData => {
                             const row = tbody.insertRow();
@@ -1422,7 +1421,7 @@ function showFutureData() {
                         const table2 = document.createElement('table');
                         const thead2 = table2.createTHead();
                         const headerRow2 = thead2.insertRow();
-                        const headers2 = ['Time', 'Air Quality','Cloud', 'Temperature in \u00B0C', 'Condition', 'Humidity', 'Wind Speed in mph', 'Precipitation in mm'];
+                        const headers2 = ['Time', 'Cloud', 'Temperature in \u00B0C', 'Condition', 'Humidity', 'Wind Speed in mph', 'Precipitation in mm'];
                         headers2.forEach(text => {
                             const th = document.createElement('th');
                             th.textContent = text;
@@ -1433,9 +1432,7 @@ function showFutureData() {
                         for(let i=0;i<24;i++)
                         {
                             let fore1 = forecasthour[i];
-                            let airQualityhour = fore1["air_quality"];
                             data2[i] = [`${fore1["time"].slice(11)}`, 
-                            `${array2[airQualityhour["us-epa-index"] - 1]}`,
                             `${fore1["cloud"]}`,
                             `${fore1["temp_c"]}`,
                             `${fore1["condition"]["text"]}`,
@@ -1452,7 +1449,6 @@ function showFutureData() {
                             });
                         });
                         div1.append(table2);
-                    }
 
                     div.append(div1);
 
@@ -1465,6 +1461,7 @@ function showFutureData() {
                         div1.remove();
                         gofocity.remove();
                         div.append(input);
+                        div.append(label);
                         div.append(input3);
                         input.value = "";
                         input3.value = "";
@@ -1475,7 +1472,7 @@ function showFutureData() {
         })
     }
 
-    function showForecastDataIP() {
+    function showFutureDataIP() {
         let div = document.createElement("div");
         div.className = "currlldiv";
         let input1 = document.createElement("input");
@@ -1484,8 +1481,11 @@ function showFutureData() {
         input1.className = "currlat";
         div.append(input1);
         let input3 = document.createElement("input");
-        input3.type = "number";
-        input3.placeholder = "Enter the no. of days ranging from 1 to 10";
+        input3.type = "text";
+        let label = document.createElement("label");
+        label.innerText = "Enter the date in yyyy-mm-dd format between 14 days and 300 days from today";
+        label.className = "datelabel";
+        div.append(label);
         input3.className = "nod";
         div.append(input3);
         let button = document.createElement("button");
@@ -1532,13 +1532,14 @@ function showFutureData() {
                 return;
             }
                 let response = await fetch(
-                    `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value}&days=${input3.value}&aqi=yes&alerts=no`
+                    `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value}&dt=${input3.value}`
                 )
                 let data = response.json();
                 data.then((res) => {
                     let foreweather = res['forecast'];
                     let currlocation = res['location'];
                     input1.remove();
+                    label.remove();
                     input3.remove();
                     button.remove();
                     let div1 = document.createElement("div");
