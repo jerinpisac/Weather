@@ -27,6 +27,7 @@ function showCurrentData() {
     select1.className = "cwselect";
     let option1 = document.createElement("option");
     option1.innerText = "Choose your input for location";
+    option1.value = "OG";
     select1.append(option1);
     let option2 = document.createElement("option");
     option2.value = "LL";
@@ -47,7 +48,7 @@ function showCurrentData() {
     main.append(gohome);
     gohome.addEventListener("click", () => {
         main.append(select);
-        select.value = "";
+        select.value = "OO";
         select1.remove();
         gohome.remove();
     })
@@ -97,7 +98,7 @@ function showCurrentData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -265,7 +266,7 @@ function showCurrentData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -431,7 +432,7 @@ function showCurrentData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -602,6 +603,7 @@ function showForecastData() {
     select1.className = "cwselect";
     let option1 = document.createElement("option");
     option1.innerText = "Choose your input for location";
+    option1.value = "OG";
     select1.append(option1);
     let option2 = document.createElement("option");
     option2.value = "LL";
@@ -622,7 +624,7 @@ function showForecastData() {
     main.append(gohome);
     gohome.addEventListener("click", () => {
         main.append(select);
-        select.value = "";
+        select.value = "OO";
         select1.remove();
         gohome.remove();
     })
@@ -677,7 +679,7 @@ function showForecastData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -829,7 +831,7 @@ function showForecastData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -978,7 +980,7 @@ function showForecastData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -1127,6 +1129,7 @@ function showFutureData() {
     select1.className = "cwselect";
     let option1 = document.createElement("option");
     option1.innerText = "Choose your input for location";
+    option1.value = "OG";
     select1.append(option1);
     let option2 = document.createElement("option");
     option2.value = "LL";
@@ -1147,7 +1150,7 @@ function showFutureData() {
     main.append(gohome);
     gohome.addEventListener("click", () => {
         main.append(select);
-        select.value = "";
+        select.value = "OO";
         select1.remove();
         gohome.remove();
     })
@@ -1205,7 +1208,7 @@ function showFutureData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -1353,7 +1356,7 @@ function showFutureData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
@@ -1499,7 +1502,7 @@ function showFutureData() {
 
         gocw.addEventListener("click", () => {
             main.append(select1);
-            select1.value = "";
+            select1.value = "OG";
             main.append(gohome);
             div.remove();
         })
