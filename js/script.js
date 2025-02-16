@@ -709,6 +709,8 @@ function showForecastData() {
                     return;
                 }
             gocw.remove();
+            let maindiv = document.querySelector(".main-body");
+            maindiv.className = "main-body2";
             let response = await fetch(
                     `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value},${input2.value}&days=${input3.value}&aqi=yes&alerts=no`
                 )
@@ -818,6 +820,7 @@ function showForecastData() {
                         input3.value = "";
                         div.append(button);
                         div.append(gocw);
+                        maindiv.className = "main-body";
                     })
                 })
         })
@@ -861,6 +864,8 @@ function showForecastData() {
                     return;
                 }
             gocw.remove();
+            let maindiv = document.querySelector(".main-body");
+            maindiv.className = "main-body2";
             let response = await fetch(
                     `${API_URL}forecast.json?key=${API_KEY}&q=${input.value}&days=${input3.value}&aqi=yes&alerts=no`
                 )
@@ -967,6 +972,7 @@ function showForecastData() {
                         input3.value = "";
                         div.append(button);
                         div.append(gocw);
+                        maindiv.className = "main-body";
                     })
                 })
         })
@@ -1028,6 +1034,8 @@ function showForecastData() {
                 return;
             }
             gocw.remove();
+            let maindiv = document.querySelector(".main-body");
+            maindiv.className = "main-body2";
                 let response = await fetch(
                     `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value}&days=${input3.value}&aqi=yes&alerts=no`
                 )
@@ -1134,6 +1142,7 @@ function showForecastData() {
                         input3.value = "";
                         div.append(button);
                         div.append(gocw);
+                        maindiv.className = "main-body";
                     })
                 })
         })
@@ -1238,6 +1247,8 @@ function showFutureData() {
                     return;
                 }
             gocw.remove();
+            let maindiv = document.querySelector(".main-body");
+            maindiv.className = "main-body2";
             let response = await fetch(
                     `${API_URL}future.json?key=${API_KEY}&q=${input1.value},${input2.value}&dt=${input3.value}`
                 )
@@ -1340,6 +1351,7 @@ function showFutureData() {
                         input3.value = "";
                         div.append(button);
                         div.append(gocw);
+                        maindiv.className = "main-body";
                     })
                 })
         })
@@ -1386,6 +1398,8 @@ function showFutureData() {
                     return;
                 }
             gocw.remove();
+            let maindiv = document.querySelector(".main-body");
+            maindiv.className = "main-body2";
             let response = await fetch(
                     `${API_URL}future.json?key=${API_KEY}&q=${input.value}&dt=${input3.value}`
                 )
@@ -1486,6 +1500,7 @@ function showFutureData() {
                         input3.value = "";
                         div.append(button);
                         div.append(gocw);
+                        maindiv.className = "main-body";
                     })
                 })
         })
@@ -1550,6 +1565,8 @@ function showFutureData() {
                 return;
             }
             gocw.remove();
+            let maindiv = document.querySelector(".main-body");
+            maindiv.className = "main-body2";
                 let response = await fetch(
                     `${API_URL}future.json?key=${API_KEY}&q=${input1.value}&dt=${input3.value}`
                 )
@@ -1650,6 +1667,7 @@ function showFutureData() {
                         input3.value = "";
                         div.append(button);
                         div.append(gocw);
+                        maindiv.className = "main-body";
                     })
                 })
         })
