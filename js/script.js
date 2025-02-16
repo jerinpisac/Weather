@@ -132,7 +132,7 @@ function showCurrentData() {
                 let div2 = document.createElement("div");
                 div2.className = "currlldiv2";
                 let img1 = document.createElement("img");
-                img1.src = "";
+                img1.src = "../images/temp.png";
                 div2.append(img1);
                 div2.append(templabel);
 
@@ -141,7 +141,7 @@ function showCurrentData() {
                 let div3 = document.createElement("div");
                 div3.className = "currlldiv3";
                 let img2 = document.createElement("img");
-                img2.src = "";
+                img2.src = "../images/hum.png";
                 div3.append(img2);
                 div3.append(humlabel);
 
@@ -150,7 +150,7 @@ function showCurrentData() {
                 let div4 = document.createElement("div");
                 div4.className = "currlldiv4";
                 let img3 = document.createElement("img");
-                img3.src = "";
+                img3.src = "../images/windspeed.png";
                 div4.append(img3);
                 div4.append(windlabel);
 
@@ -189,7 +189,9 @@ function showCurrentData() {
                     });
                 });
                 div1.append(table);
-
+                
+                let div6 = document.createElement("div");
+                div6.className = "currlldiv6";
                 let select2 = document.createElement("select");
                 select2.className = "cwllselect";
                 let array = ["cloud", "dewpoint_c", "gust_mph", "heatindex_c", "precip_mm", "pressure_mb"];
@@ -204,9 +206,8 @@ function showCurrentData() {
                     select2.append(option5);
                 }
 
-                div1.append(select2);
-
-                div.append(div1);
+                div6.append(select2);
+                
                 let label = document.createElement("label");
                 label.className = "currllother";
                 select2.addEventListener("change", () => {
@@ -224,8 +225,11 @@ function showCurrentData() {
                             break;
                         }
                     }
-                    div1.append(label);
+                    div6.append(label);
                 })
+
+                div1.append(div6);
+                div.append(div1);
 
                 let gocwll = document.createElement("button");
                 gocwll.innerText = "Go Back";
@@ -300,7 +304,7 @@ function showCurrentData() {
                 let div2 = document.createElement("div");
                 div2.className = "currlldiv2";
                 let img1 = document.createElement("img");
-                img1.src = "";
+                img1.src = "../images/temp.png";
                 div2.append(img1);
                 div2.append(templabel);
 
@@ -309,7 +313,7 @@ function showCurrentData() {
                 let div3 = document.createElement("div");
                 div3.className = "currlldiv3";
                 let img2 = document.createElement("img");
-                img2.src = "";
+                img2.src = "../images/hum.png";
                 div3.append(img2);
                 div3.append(humlabel);
 
@@ -318,7 +322,7 @@ function showCurrentData() {
                 let div4 = document.createElement("div");
                 div4.className = "currlldiv4";
                 let img3 = document.createElement("img");
-                img3.src = "";
+                img3.src = "../images/windspeed.png";
                 div4.append(img3);
                 div4.append(windlabel);
 
@@ -357,7 +361,9 @@ function showCurrentData() {
                     });
                 });
                 div1.append(table);
-
+                
+                let div6 = document.createElement("div");
+                div6.className = "currlldiv6";
                 let select2 = document.createElement("select");
                 select2.className = "cwllselect";
                 let array = ["cloud", "dewpoint_c", "gust_mph", "heatindex_c", "precip_mm", "pressure_mb"];
@@ -368,33 +374,39 @@ function showCurrentData() {
                 for(let i=0;i<array.length;i++){
                     let option5 = document.createElement("option");
                     option5.innerText = `${array1[i]}`;
-                    option5.value = `${array[i][0]}${array[i][3]}`;
+                    option5.value = `${array[i][0]}${array[i][1]}`;
                     select2.append(option5);
                 }
 
-
-                div1.append(select2);
-
-                div.append(div1);
+                div6.append(select2);
+                
                 let label = document.createElement("label");
                 label.className = "currllother";
                 select2.addEventListener("change", () => {
                     let count = 0;
                     for(let i=0;i<array.length;i++){
-                        if(select2.value === `${array[i][0]}${array[i][3]}` && count === 0){
+                        if(select2.value === ""){
+                            label.innerText = "";
+                            count = 0;
+                            break;
+                        }
+                        if(select2.value === `${array[i][0]}${array[i][1]}` && count === 0){
                             label.innerText = `${currweather[array[i]]}`;
                             count++;
                             break;
                         }
-                        else if(select2.value === `${array[i][0]}${array[i][3]}` && count !== 0){
+                        else if(select2.value === `${array[i][0]}${array[i][1]}` && count !== 0){
                             label.remove();
                             label.innerText = `${currweather[array[i]]}`;
                             count++;
                             break;
                         }
                     }
-                    div1.append(label);
+                    div6.append(label);
                 })
+
+                div1.append(div6);
+                div.append(div1);
 
                 let gocwcity = document.createElement("button");
                 gocwcity.innerText = "Go Back";
@@ -444,7 +456,6 @@ function showCurrentData() {
                 alert("Enter something");
                 return;
             }
-            gocw.remove();
             let ipString = input.value;
             let count1 = 0, count2 = 0;
             for(let i=0;i<ipString.length;i++)
@@ -465,6 +476,7 @@ function showCurrentData() {
                 alert("Is it an IP address?");
                 return;
             }
+            gocw.remove();
             let response = await fetch(
                 `${API_URL}current.json?key=${API_KEY}&q=${input.value}&aqi=yes`
             )
@@ -485,16 +497,16 @@ function showCurrentData() {
                 let div2 = document.createElement("div");
                 div2.className = "currlldiv2";
                 let img1 = document.createElement("img");
-                img1.src = "";
+                img1.src = "../images/temp.png";
                 div2.append(img1);
                 div2.append(templabel);
-                
+
                 let humlabel = document.createElement("label");
                 humlabel.innerHTML = `Humidity in %: ${currweather["humidity"]}`;
                 let div3 = document.createElement("div");
                 div3.className = "currlldiv3";
                 let img2 = document.createElement("img");
-                img2.src = "";
+                img2.src = "../images/hum.png";
                 div3.append(img2);
                 div3.append(humlabel);
 
@@ -503,7 +515,7 @@ function showCurrentData() {
                 let div4 = document.createElement("div");
                 div4.className = "currlldiv4";
                 let img3 = document.createElement("img");
-                img3.src = "";
+                img3.src = "../images/windspeed.png";
                 div4.append(img3);
                 div4.append(windlabel);
 
@@ -542,7 +554,9 @@ function showCurrentData() {
                     });
                 });
                 div1.append(table);
-
+                
+                let div6 = document.createElement("div");
+                div6.className = "currlldiv6";
                 let select2 = document.createElement("select");
                 select2.className = "cwllselect";
                 let array = ["cloud", "dewpoint_c", "gust_mph", "heatindex_c", "precip_mm", "pressure_mb"];
@@ -557,9 +571,8 @@ function showCurrentData() {
                     select2.append(option5);
                 }
 
-                div1.append(select2);
-
-                div.append(div1);
+                div6.append(select2);
+                
                 let label = document.createElement("label");
                 label.className = "currllother";
                 select2.addEventListener("change", () => {
@@ -577,8 +590,11 @@ function showCurrentData() {
                             break;
                         }
                     }
-                    div1.append(label);
+                    div6.append(label);
                 })
+
+                div1.append(div6);
+                div.append(div1);
 
                 let gocwip = document.createElement("button");
                 gocwip.innerText = "Go Back";
@@ -991,7 +1007,6 @@ function showForecastData() {
                 alert("Enter something");
                 return;
             }
-            gocw.remove();
             let ipString = input1.value;
             let count1 = 0, count2 = 0;
             for(let i=0;i<ipString.length;i++)
@@ -1012,6 +1027,7 @@ function showForecastData() {
                 alert("Is it an IP address?");
                 return;
             }
+            gocw.remove();
                 let response = await fetch(
                     `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value}&days=${input3.value}&aqi=yes&alerts=no`
                 )
@@ -1513,7 +1529,6 @@ function showFutureData() {
                 alert("Enter something");
                 return;
             }
-            gocw.remove();
             let ipString = input1.value;
             let count1 = 0, count2 = 0;
             for(let i=0;i<ipString.length;i++)
@@ -1534,6 +1549,7 @@ function showFutureData() {
                 alert("Is it an IP address?");
                 return;
             }
+            gocw.remove();
                 let response = await fetch(
                     `${API_URL}future.json?key=${API_KEY}&q=${input1.value}&dt=${input3.value}`
                 )
