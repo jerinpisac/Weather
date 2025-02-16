@@ -27,7 +27,36 @@ body{
     box-shadow: 0 3px 6px black;
 }
 
-.main-body h1{
+.main-body{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #00bfff;
+    color: white;
+    box-shadow: 0 3px 6px black;
+}
+
+.main-body2{
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #00bfff;
+    color: white;
+    box-shadow: 0 3px 6px black;
+}
+
+.main-body h1,
+.main-body2 h1{
     padding-bottom: 50px;
 }
 
@@ -136,9 +165,10 @@ h2{
     text-align: center;
     text-decoration: underline;
     font-size: 30px;
+    margin-bottom: 40px;
 }
 
-h3{
+h4, h3{
     text-align: center;
     margin-bottom: 20px;
 }
@@ -150,6 +180,7 @@ table, th, td{
 
 th, td{
     padding: 10px;
+    text-align: center;
 }
 
 .cwllselect{
@@ -160,4 +191,12 @@ th, td{
 .currllother{
     font-size: 20px;
     font-weight: 600;
+}
+
+.datelabel{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 18px;
 }
