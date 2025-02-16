@@ -105,12 +105,12 @@ function showCurrentData() {
 
         main.append(div);
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input1.value === "" || input2.value === "")
             {
                 alert("Enter something");
                 return;
             }
+            gocw.remove();
             let response = await fetch(
                 `${API_URL}current.json?key=${API_KEY}&q=${input1.value},${input2.value}&aqi=yes`
             )
@@ -273,12 +273,12 @@ function showCurrentData() {
 
         main.append(div);
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input.value === "")
             {
                 alert("Enter something");
                 return;
             }
+            gocw.remove();
             let response = await fetch(
                 `${API_URL}current.json?key=${API_KEY}&q=${input.value}&aqi=yes`
             )
@@ -439,12 +439,12 @@ function showCurrentData() {
 
         main.append(div);
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input.value === "")
             {
                 alert("Enter something");
                 return;
             }
+            gocw.remove();
             let ipString = input.value;
             let count1 = 0, count2 = 0;
             for(let i=0;i<ipString.length;i++)
@@ -687,13 +687,13 @@ function showForecastData() {
         main.append(div);
 
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input1.value === "" || input2.value === "" || input3.value === "")
                 {
                     alert("Enter something");
                     return;
                 }
-                let response = await fetch(
+            gocw.remove();
+            let response = await fetch(
                     `${API_URL}forecast.json?key=${API_KEY}&q=${input1.value},${input2.value}&days=${input3.value}&aqi=yes&alerts=no`
                 )
                 let data = response.json();
@@ -839,13 +839,13 @@ function showForecastData() {
         main.append(div);
 
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input.value === "" || input3.value === "")
                 {
                     alert("Enter something");
                     return;
                 }
-                let response = await fetch(
+            gocw.remove();
+            let response = await fetch(
                     `${API_URL}forecast.json?key=${API_KEY}&q=${input.value}&days=${input3.value}&aqi=yes&alerts=no`
                 )
                 let data = response.json();
@@ -987,11 +987,11 @@ function showForecastData() {
 
         main.append(div);
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input1.value === "" || input3.value === "")                {
                 alert("Enter something");
                 return;
             }
+            gocw.remove();
             let ipString = input1.value;
             let count1 = 0, count2 = 0;
             for(let i=0;i<ipString.length;i++)
@@ -1216,13 +1216,13 @@ function showFutureData() {
         main.append(div);
 
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input1.value === "" || input2.value === "" || input3.value === "")
                 {
                     alert("Enter something");
                     return;
                 }
-                let response = await fetch(
+            gocw.remove();
+            let response = await fetch(
                     `${API_URL}future.json?key=${API_KEY}&q=${input1.value},${input2.value}&dt=${input3.value}`
                 )
                 let data = response.json();
@@ -1364,13 +1364,13 @@ function showFutureData() {
         main.append(div);
 
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input.value === "" || input3.value === "")
                 {
                     alert("Enter something");
                     return;
                 }
-                let response = await fetch(
+            gocw.remove();
+            let response = await fetch(
                     `${API_URL}future.json?key=${API_KEY}&q=${input.value}&dt=${input3.value}`
                 )
                 let data = response.json();
@@ -1509,11 +1509,11 @@ function showFutureData() {
 
         main.append(div);
         button.addEventListener("click", async () => {
-            gocw.remove();
             if(input1.value === "" || input3.value === "")                {
                 alert("Enter something");
                 return;
             }
+            gocw.remove();
             let ipString = input1.value;
             let count1 = 0, count2 = 0;
             for(let i=0;i<ipString.length;i++)
